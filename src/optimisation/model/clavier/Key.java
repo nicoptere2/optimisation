@@ -2,18 +2,21 @@ package optimisation.model.clavier;
 
 public class Key {
 	
-	private Values values;
-
+	private char value;
+	
 	public Key() {
-		values = new Values();
+	}
+
+	public Key(char value) {
+		this.value = value;
 	}
 	
-	public void newValue(Character c) {
-		values.add(c);
+	public void setValue(char c) {
+		this.value = c;
 	}
 	
-	public Character nextValue() {
-		return values.poll();
+	public char nextValue() {
+		return value;
 	}
 
 }

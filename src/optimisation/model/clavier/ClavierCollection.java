@@ -8,8 +8,12 @@ public class ClavierCollection implements Iterable<Clavier>{
 	
 	public ClavierCollection() {
 		clavierCollection = new ArrayList<Clavier>();
-		clavierCollection.add(new Clavier());
-		clavierCollection.add(new Clavier());
+		initCollection(1);
+	}
+	
+	public void initCollection(int nbClavier) {
+		for(int i=0; i<nbClavier; i++)
+			clavierCollection.add(new Clavier());
 	}
 	
 	public Iterator<Clavier> iterator() {
