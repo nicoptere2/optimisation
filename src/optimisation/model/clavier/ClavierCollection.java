@@ -8,7 +8,6 @@ public class ClavierCollection implements Iterable<Clavier>{
 	
 	public ClavierCollection() {
 		clavierCollection = new ArrayList<Clavier>();
-		initCollection(1);
 	}
 	
 	public void initCollection(int nbClavier) {
@@ -16,7 +15,11 @@ public class ClavierCollection implements Iterable<Clavier>{
 			clavierCollection.add(new Clavier());
 	}
 	
-	public Iterator<Clavier> iterator() {
+	public synchronized Iterator<Clavier> iterator() {
 		return clavierCollection.iterator();
+	}
+
+	public int size() {
+		return clavierCollection.size();
 	}
 }

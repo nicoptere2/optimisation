@@ -11,11 +11,11 @@ public class Key {
 		this.value = value;
 	}
 	
-	public void setValue(char c) {
+	public synchronized void setValue(char c) {
 		this.value = c;
 	}
 	
-	public char nextValue() {
+	public synchronized char nextValue() {
 		return value;
 	}
 

@@ -22,6 +22,8 @@ public class ViewClavier {
 		int i=0;
 		
 		for(Key k: this.clavier) {
+			keys.add(new ViewKey(k, tmpX, tmpY));
+			i++;
 			if(i%10 == 0){
 				tmpX = x;
 				tmpY += ViewKey.cote;
@@ -29,8 +31,6 @@ public class ViewClavier {
 			else {
 				tmpX += ViewKey.cote;
 			}
-			keys.add(new ViewKey(k, tmpX, tmpY));
-			i++;
 		}
 	}
 

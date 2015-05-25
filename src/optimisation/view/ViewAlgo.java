@@ -17,9 +17,12 @@ public class ViewAlgo extends JPanel{
 	public ViewAlgo() {
 		this.claviers = new ViewClavierCollection();
 		
-		 this.setPreferredSize(new Dimension(800, 500)) ;
-		 
-		 repaint();
+		this.setPreferredSize(new Dimension(800, 500)) ;
+	}
+	
+	public void execute() {
+		claviers.initClaviers();
+		repaint();
 	}
 
 	
@@ -46,7 +49,7 @@ public class ViewAlgo extends JPanel{
         
         claviers.dessiner(g2);
        
-        repaint() ;
+        //repaint() ;
         
     }
 }

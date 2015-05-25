@@ -13,12 +13,21 @@ public class ViewClavierCollection {
 	public ViewClavierCollection() {
 		super();
 		clavierCollection = new ArrayList<ViewClavier>();
+		
+	}
+	
+	public void initClaviers() {
 		int i=0;
+		int j=0;
 		int tmpY;
+		int tmpX;
 		for(Clavier c: Model.getInstance().getClavierCollection()){
-			tmpY = ViewKey.cote * 5 *i; 
-			clavierCollection.add(new ViewClavier(c, 0, tmpY));
+			tmpY = ViewKey.cote * 5 * i; 
+			tmpX = ViewKey.cote * 11 * j;
+			clavierCollection.add(new ViewClavier(c, tmpX, tmpY));
 			i++;
+			if(i%4 == 0)
+				j++;
 		}
 	}
 	
