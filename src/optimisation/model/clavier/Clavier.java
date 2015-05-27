@@ -16,7 +16,7 @@ public class Clavier implements Iterable<Key>{
 		keysForIterator = new ArrayList<Key>(SIZE);
 		char clavier[] = new char[SIZE];
 		for(int i=0; i<SIZE; i++){
-			clavier[i] = '\0';
+			clavier[i] = ' ';
 			keys[i] = new Key();
 			keysForIterator.add(keys[i]);
 		}
@@ -33,7 +33,7 @@ public class Clavier implements Iterable<Key>{
 			System.out.println(c);
 			do{
 				i = r.nextInt(40);
-			}while(clavier[i] != '\0');
+			}while(clavier[i] != ' ');
 			
 			clavier[i] = c;				
 		}
@@ -44,10 +44,10 @@ public class Clavier implements Iterable<Key>{
 			keys[i].setValue(c[i]);
 		}
 	}
-
-	@Override
+	
 	public synchronized Iterator<Key> iterator() {
 		return keysForIterator.iterator();
 	}
+	
 	
 }

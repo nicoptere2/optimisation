@@ -11,6 +11,7 @@ public class ClavierCollection implements Iterable<Clavier>{
 	}
 	
 	public void initCollection(int nbClavier) {
+		clavierCollection.removeAll(clavierCollection);
 		for(int i=0; i<nbClavier; i++)
 			clavierCollection.add(new Clavier());
 	}

@@ -22,7 +22,6 @@ public class Individu implements Comparable{
 		
 	}
 
-	@Override
 	public int compareTo(Object arg0) {
 		float otherFitness = ((Individu) arg0).fitness();
 		float thisFitness = this.fitness();
