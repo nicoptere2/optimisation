@@ -68,7 +68,8 @@ public class ViewKey extends BufferedImage {
      * @param t temps courant
      */
     private void dessinerChaineAuCentre(int w, int h, int c, Graphics2D g) {
-    	String  s = Character.toString(key.getValue());
+    	char tmp = (key.getValue() == '\0')? ' ' : key.getValue();
+    	String  s = Character.toString(tmp);
     	
         // Find the size of string s in the font of the Graphics context 
         FontMetrics fm = g.getFontMetrics();
