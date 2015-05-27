@@ -14,7 +14,7 @@ public class Clavier implements Iterable<Key>{
 	public Clavier () {
 		keys = new Key[4][10];
 		keysForIterator = new ArrayList<Key>(SIZE);
-		char clavier[] = new char[SIZE];
+		char[] clavier = new char[SIZE];
 		for(int i=0; i<4; i++){
 			for(int j=0; j<10; j++) {
 				clavier[i] = '\0';
@@ -39,7 +39,7 @@ public class Clavier implements Iterable<Key>{
 				i = r.nextInt(40);
 			}while(clavier[i] != '\0');
 			
-			clavier[i] = c;				
+			clavier[i] = c;
 		}
 	}
 
