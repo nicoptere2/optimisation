@@ -38,7 +38,7 @@ public class ViewKey extends BufferedImage {
         carre = createGraphics();
        
         
-        dessinerCase(0) ;
+        dessinerCase() ;
     }
     
    
@@ -48,7 +48,7 @@ public class ViewKey extends BufferedImage {
      * changer au cours de l'animation
      * @param t temps courant
      */
-    private void dessinerCase(double t) {
+    private void dessinerCase() {
         carre.setPaint(Color.white) ;
         carre.fillRect(0, 0, cote, cote) ;
         
@@ -56,7 +56,7 @@ public class ViewKey extends BufferedImage {
         carre.drawRect(0, 0, cote, cote); 
 
         carre.setFont(new Font("Arial", Font.BOLD, 16));
-        dessinerChaineAuCentre(0, 0, cote, carre, t);  
+        dessinerChaineAuCentre(0, 0, cote, carre);  
     }
 
     /**
@@ -67,8 +67,8 @@ public class ViewKey extends BufferedImage {
      * @param g élément graphique
      * @param t temps courant
      */
-    private void dessinerChaineAuCentre(int w, int h, int c, Graphics2D g, double t) {
-    	String  s = Character.toString(key.nextValue());
+    private void dessinerChaineAuCentre(int w, int h, int c, Graphics2D g) {
+    	String  s = Character.toString(key.getValue());
     	
         // Find the size of string s in the font of the Graphics context 
         FontMetrics fm = g.getFontMetrics();
@@ -86,6 +86,7 @@ public class ViewKey extends BufferedImage {
      * @param init 
      */
     public boolean dessiner(Graphics g) {
+    	dessinerCase();
     	g.drawImage(this, this.x, this.y, null);
 
     	return true;

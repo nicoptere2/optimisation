@@ -1,6 +1,10 @@
 package optimisation.controller.genetic;
 
+import java.util.Random;
+
+import optimisation.model.Bigramme;
 import optimisation.model.clavier.Clavier;
+import optimisation.model.clavier.Key;
 
 public class Individu implements Comparable{
 	
@@ -10,8 +14,33 @@ public class Individu implements Comparable{
 		this.clavier = c;
 	}
 	
-	public float fitness() {
-		return 0;
+	public double fitness() {
+		double ret = 0;
+		int valueBigr;
+		double dist = 0;
+		String valueA, valueB, tmp ;
+		
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<10; j++){
+				if(clavier.getKeys()[i][j].getValue()=='\0')
+					continue;
+				valueA = String.valueOf(clavier.getKeys()[i][j].getValue());
+				for(int k=0; k<4; k++) {
+					for(int l=0; l<10; l++) {
+						if(clavier.getKeys()[k][l].getValue()=='\0')
+							continue;
+						valueB = String.valueOf(clavier.getKeys()[k][l].getValue());
+						tmp = valueA + valueB;
+						valueBigr = Bigramme.getInstance().getValue(tmp);
+						dist = Math.sqrt(Math.pow(i-k, 2) + Math.pow(j-l, 2));
+						ret += dist * valueBigr;
+					}
+				}
+				valueA = "";
+			}
+		}
+		
+		return ret;
 	}
 	
 	public Individu croisement(Individu mate) {
@@ -19,13 +48,15 @@ public class Individu implements Comparable{
 	}
 	
 	public void mutation() {
-		
+		Random r = new Random();
+		if((double)(r.nextInt(100))/100 < Genetic.propMutation) {
+			clavier.echange(clavier.getKeys()[r.nextInt(4)][r.nextInt(10)], clavier.getKeys()[r.nextInt(4)][r.nextInt(10)]);
+		}
 	}
 
 	public int compareTo(Object arg0) {
-		float otherFitness = ((Individu) arg0).fitness();
-		float thisFitness = this.fitness();
-		
+		double otherFitness = ((Individu) arg0).fitness();
+		double thisFitness = this.fitness();
 		if(otherFitness < thisFitness)
 			return 1;
 		else if(otherFitness > thisFitness)

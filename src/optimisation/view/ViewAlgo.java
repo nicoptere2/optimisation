@@ -29,8 +29,6 @@ public class ViewAlgo extends JPanel{
 	@Override
     public void paintComponent(Graphics g) {
 		
-		System.out.println("je repaint");
-		
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         int w = getWidth();
@@ -42,14 +40,13 @@ public class ViewAlgo extends JPanel{
         
                 
         try {
-            Thread.sleep(500) ;
+            Thread.sleep(0) ;
         } catch (InterruptedException ex) {
             Logger.getLogger(ViewAlgo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         claviers.dessiner(g2);
-       
-        //repaint() ;
+        repaint() ;
         
     }
 }

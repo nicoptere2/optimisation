@@ -31,7 +31,7 @@ public class Clavier implements Iterable<Key>{
 	private void random(char clavier[]) {
 		Random r = new Random();
 		int i;
-		for(char c='a'; c<='z'; c++){
+		for(char c='A'; c<='Z'; c++){
 			System.out.println(c);
 			do{
 				i = r.nextInt(40);
@@ -58,6 +58,13 @@ public class Clavier implements Iterable<Key>{
 	@Override
 	public synchronized Iterator<Key> iterator() {
 		return keysForIterator.iterator();
+	}
+	
+	public void echange(Key k1, Key k2) {
+		char tmp;
+		tmp = k1.getValue();
+		k1.setValue(k2.getValue());
+		k2.setValue(tmp);
 	}
 	
 }

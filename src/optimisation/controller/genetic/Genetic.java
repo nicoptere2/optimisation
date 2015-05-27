@@ -11,9 +11,9 @@ public class Genetic extends Algorithme{
 	
 	protected ArrayList<Individu> individus;
 	
-	protected double pourcentGarde = 0.5;
+	public static double pourcentGarde = 0.5;
 	
-	protected double propMutation = 0.1;
+	public static double propMutation = 0.1;
 	
 	public Genetic(ClavierCollection claviers, int nbIndividu) {
 		super(claviers);
@@ -33,9 +33,9 @@ public class Genetic extends Algorithme{
 		System.out.println("Démarage de l'algorithme génétique");
 		
 		int j=0;
-		while(j<1000) {
+		while(j<100000) {
 			
-			System.out.println(this);
+			//System.out.println(this);
 			
 			this.sort();
 			

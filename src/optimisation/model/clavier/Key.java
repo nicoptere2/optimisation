@@ -16,12 +16,13 @@ public class Key {
 		this.value = c;
 	}
 	
-	public synchronized char nextValue() {
+	public synchronized char getValue() {
 		return value;
 	}
 
 	public void setPosition(int i) {
 		// TODO Auto-generated method stub
 	}
+
 
 }

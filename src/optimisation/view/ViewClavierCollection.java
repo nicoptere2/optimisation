@@ -32,6 +32,7 @@ public class ViewClavierCollection {
 	}
 	
 	public boolean dessiner(Graphics2D gp) {
+		//initClaviers();
 		for(ViewClavier vc : clavierCollection) 
 			vc.dessiner(gp);
 
