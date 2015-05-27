@@ -39,7 +39,7 @@ public class Recuit extends Algorithme{
 				e.printStackTrace();
 			}
 			a = '\0';
-			b = '\0';
+			b = '\0'; 
 			while(a == '\0'){
 				i = r.nextInt(10);
 				j = r.nextInt(4);
