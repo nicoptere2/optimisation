@@ -17,6 +17,7 @@ public class ViewClavierCollection {
 	}
 	
 	public void initClaviers() {
+		clavierCollection.removeAll(clavierCollection);
 		int i=0;
 		int j=0;
 		int tmpY;
@@ -32,7 +33,6 @@ public class ViewClavierCollection {
 	}
 	
 	public boolean dessiner(Graphics2D gp) {
-		//initClaviers();
 		for(ViewClavier vc : clavierCollection) 
 			vc.dessiner(gp);
 

@@ -35,7 +35,7 @@ public class View extends JPanel{
 		
 		Bouton btnExec = new Bouton("Executer", "Execute l'algorithme de recherche de chemin");
         btnExec.addActionListener(new  ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				Controller.getInstance().execute();
 				vClavier.execute();

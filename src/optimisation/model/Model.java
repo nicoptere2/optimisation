@@ -21,6 +21,7 @@ public class Model {
 	}
 	
 	public ClavierCollection getClavierCollection() {
+		System.out.println("taille : "+cC.size());
 		return cC;
 	}
 }

@@ -17,10 +17,11 @@ public class Clavier implements Iterable<Key>{
 		char clavier[] = new char[SIZE];
 		for(int i=0; i<4; i++){
 			for(int j=0; j<10; j++) {
-				clavier[i] = '\0';
+				clavier[i] = ' ';
 				keys[i][j] = new Key();
 				keysForIterator.add(keys[i][j]);
 			}
+
 		}
 
 		random(clavier);
@@ -34,8 +35,9 @@ public class Clavier implements Iterable<Key>{
 		for(char c='A'; c<='Z'; c++){
 			System.out.println(c);
 			do{
+				System.out.println("coucou");
 				i = r.nextInt(40);
-			}while(clavier[i] != '\0');
+			}while(clavier[i] == ' ');
 			
 			clavier[i] = c;				
 		}
@@ -55,12 +57,12 @@ public class Clavier implements Iterable<Key>{
 		return keys;
 	}
 
-	@Override
 	public synchronized Iterator<Key> iterator() {
 		return keysForIterator.iterator();
 	}
 	
-	public void echange(Key k1, Key k2) {
+
+	public synchronized void echange(Key k1, Key k2) {
 		char tmp;
 		tmp = k1.getValue();
 		k1.setValue(k2.getValue());
