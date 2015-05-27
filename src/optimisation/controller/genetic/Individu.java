@@ -44,7 +44,36 @@ public class Individu implements Comparable{
 	}
 	
 	public Individu croisement(Individu mate) {
-		return null;
+		char[][] tmpClavier = new char[4][10];
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<10; j++) {
+				tmpClavier[i][j] = this.clavier.getKeys()[i][j].getValue();
+			}
+		}
+		
+		char tmpKey;
+		int k=0, l=0;
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<10; j++) {
+				tmpKey = mate.clavier.getKeys()[i][j].getValue();
+				if(tmpKey == '\0')
+					continue;
+				
+				while(tmpClavier[k][l] == '\0'){
+					l++;
+					if(l>10){
+						l=0;
+						k++;
+					}
+				}
+				this.clavier.getKeys()[k][l].setValue(tmpKey);
+				k=0;
+				l=0;
+					
+			}
+		}
+		System.out.println("boucle?");
+		return mate;
 	}
 	
 	public void mutation() {
