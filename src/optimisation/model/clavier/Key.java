@@ -3,6 +3,7 @@ package optimisation.model.clavier;
 public class Key {
 	
 	private char value;
+	private int position;
 	
 	public Key() {
 	}
@@ -17,6 +18,10 @@ public class Key {
 	
 	public synchronized char nextValue() {
 		return value;
+	}
+
+	public void setPosition(int i) {
+		// TODO Auto-generated method stub
 	}
 
 }

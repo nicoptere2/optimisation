@@ -24,26 +24,43 @@ public class Genetic extends Algorithme{
 		
 		for(Clavier c: this.claviers) 
 			individus.add(new Individu(c));
+		
+		System.out.println("individus\n"+individus);
 	}
 
 	@Override
 	public void run() {
 		System.out.println("Démarage de l'algorithme génétique");
 		
-		this.sort();
-		
-				
-		int garde = (int) (individus.size()*pourcentGarde);	
-		for(int i=garde; i<individus.size()-1; i++){
-			individus.set(i+1, individus.get(i).croisement(individus.get(i+1)));
+		int j=0;
+		while(j<1000) {
+			
+			System.out.println(this);
+			
+			this.sort();
+			
+			int garde = (int) (individus.size()*pourcentGarde);	
+			for(int i=garde; i<individus.size()-2; i++){
+				individus.set(i+1, individus.get(i).croisement(individus.get(i+1)));
+			}
+			
+			for(Individu i: individus)
+				i.mutation();
+			
+			j++;
 		}
-		
-		
-		for(Individu i: individus)
-			i.mutation();
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected void sort() {
 		Collections.sort(individus);
+	}
+	
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		for(Individu i: individus)
+			s.append(i+"\n");
+		
+		return s.toString();
 	}
 }
