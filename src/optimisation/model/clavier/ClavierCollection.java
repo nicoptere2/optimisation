@@ -23,4 +23,14 @@ public class ClavierCollection implements Iterable<Clavier>{
 	public int size() {
 		return clavierCollection.size();
 	}
+
+	public ArrayList<Clavier> getClavierCollection() {
+		return clavierCollection;
+	}
+
+	public void setClavierCollection(ArrayList<Clavier> clavierCollection) {
+		this.clavierCollection = clavierCollection;
+	}
+	
+	
 }
