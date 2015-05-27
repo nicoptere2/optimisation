@@ -22,14 +22,14 @@ public class Individu implements Comparable{
 		
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<10; j++){
-				valueA = String.valueOf(clavier.getKeys()[i][j].getValue());
-				if(valueA.isEmpty())
+				if(clavier.getKeys()[i][j].getValue()=='\0')
 					continue;
+				valueA = String.valueOf(clavier.getKeys()[i][j].getValue());
 				for(int k=0; k<4; k++) {
 					for(int l=0; l<10; l++) {
-						valueB = String.valueOf(clavier.getKeys()[k][l].getValue());
-						if(valueB.isEmpty())
+						if(clavier.getKeys()[k][l].getValue()=='\0')
 							continue;
+						valueB = String.valueOf(clavier.getKeys()[k][l].getValue());
 						tmp = valueA + valueB;
 						valueBigr = Bigramme.getInstance().getValue(tmp);
 						dist = Math.sqrt(Math.pow(i-k, 2) + Math.pow(j-l, 2));
