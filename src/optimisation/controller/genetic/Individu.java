@@ -52,31 +52,61 @@ public class Individu implements Comparable{
 		}
 		
 		char tmpKey;
-		int k=0, l=0;
+		int k=0, l=0, n=0;
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<10; j++) {
 				tmpKey = mate.clavier.getKeys()[i][j].getValue();
 				if(tmpKey == '\0')
 					continue;
 				
-				while(tmpClavier[k][l] == '\0'){
+				while(this.clavier.getKeys()[k][l].getValue() == '\0'){
 					l++;
-					if(l>10){
+					if(l>=10){
 						l=0;
 						k++;
 					}
 				}
+				//System.out.println("['"+this.clavier.getKeys()[k][l].getValue()+"', '"+tmpKey+"']");
 				this.clavier.getKeys()[k][l].setValue(tmpKey);
-				k=0;
-				l=0;
-					
+				l++;
+				if(l>=10){
+					l=0;
+					k++;
+				}	
 			}
 		}
-		System.out.println("boucle?");
+		
+		//System.out.println("je passe deja par la..");
+		
+		l=0; k=0;
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<10; j++) {
+				tmpKey = tmpClavier[i][j];
+				if(tmpKey == '\0')
+					continue;
+				
+				while(mate.clavier.getKeys()[k][l].getValue() == '\0'){
+					l++;
+					if(l>=10){
+						l=0;
+						k++;
+					}
+				}
+				//System.out.println("['"+this.clavier.getKeys()[k][l].getValue()+"', '"+tmpKey+"']");
+				mate.clavier.getKeys()[k][l].setValue(tmpKey);
+				l++;
+				if(l>=10){
+					l=0;
+					k++;
+				}	
+			}
+		}
+		
 		return mate;
 	}
 	
 	public void mutation() {
+		
 		Random r = new Random();
 		if((double)(r.nextInt(100))/100 < Genetic.propMutation) {
 			clavier.echange(clavier.getKeys()[r.nextInt(4)][r.nextInt(10)], clavier.getKeys()[r.nextInt(4)][r.nextInt(10)]);
@@ -86,12 +116,17 @@ public class Individu implements Comparable{
 	public int compareTo(Object arg0) {
 		double otherFitness = ((Individu) arg0).fitness();
 		double thisFitness = this.fitness();
+		int ret;
 		if(otherFitness < thisFitness)
-			return 1;
+			ret = 1;
 		else if(otherFitness > thisFitness)
-			return -1;
+			ret = -1;
 		else
-			return 0;
+			ret = 0;
+		
+		//System.out.println("comparaison : " + otherFitness + " / "+ thisFitness + " retour : " + ret);
+		
+		return ret;
 	}
 	
 	public String toString() {

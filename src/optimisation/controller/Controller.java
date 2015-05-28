@@ -26,7 +26,7 @@ public class Controller {
 		if(algo == "Recuit")
 			algorithme = new Recuit(Model.getInstance().getClavierCollection());
 		else if(algo == "Genetic")
-			algorithme = new Genetic(Model.getInstance().getClavierCollection(), 4);
+			algorithme = new Genetic(Model.getInstance().getClavierCollection(), 100);
 		
 		thread = new Thread(algorithme, "Controlle");
 	}
