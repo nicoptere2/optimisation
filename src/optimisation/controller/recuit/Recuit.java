@@ -14,7 +14,7 @@ public class Recuit extends Algorithme{
 
 	public Recuit(ClavierCollection claviers) {
 		super(claviers);
-		claviers.initCollection(1);
+		claviers.initCollection(2);
 		temperature = 10000;
 	}
 
@@ -24,6 +24,7 @@ public class Recuit extends Algorithme{
 		
 		Clavier c = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
 		Clavier s = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
+		Clavier best = Model.getInstance().getClavierCollection().getClavierCollection().get(1);
 		
 		Random r = new Random();
 		
@@ -34,8 +35,9 @@ public class Recuit extends Algorithme{
 		double energieSuivant = 0;
 		double energie = 1;
 		double varEnergie = energie - energieSuivant;
+		int temps = 0;
 		
-		while(temperature > 10){
+		while(temperature > 1 && temps < 5000){
 			//r = new Random();
 			try {
 				Thread.sleep(5);
@@ -59,29 +61,43 @@ public class Recuit extends Algorithme{
 			//System.out.println(j);
 			double dist = Math.sqrt(Math.pow(i-k, 2) + Math.pow(j-l, 2));
 			String key = a+""+b;
-			System.out.println(fitness(c));
-			System.out.println("avant "+c);
+			//System.out.println(fitness(c));
+			//System.out.println("avant "+c);
 			s = c.echange(j, i, l, k);
-			System.out.println("apres "+c);
-			System.out.println(s);
+			//System.out.println("apres "+c);
+			//System.out.println(fitness(c));
+			//System.out.println(best);
+			//System.out.println(fitness(best));
+			//System.out.println(temps);
 			energieSuivant = fitness(s);
 			//energie = dist*Bigramme.getInstance().getValue(key);
 			energie = fitness(c);
 			varEnergie = energieSuivant - energie; 
-			System.out.println(key);
+			//System.out.println(key);
 			//while(varEnergie != 0 && energie != 0){
 				//energie = dist*Bigramme.getInstance().getValue(key);
-				energie = fitness(c);
-				varEnergie = energieSuivant - energie; 
+				//energie = fitness(c);
+				//varEnergie = energieSuivant - energie; 
 				//System.out.println(temperature);
 				//System.out.println("energie : "+energie);
 				//System.out.println(key);
-				System.out.println("proba "+Math.exp((-varEnergie)/temperature));
+				double p = Math.exp((-varEnergie)/temperature);
+				//System.out.println("proba "+p);
+				//System.out.println(energie);
 				System.out.println("varEnergie : "+varEnergie);
 				//System.out.println(energie);
-				if(varEnergie < 0 && energie != 0){
+				if((varEnergie < 0 && energie != 0) || Math.random() > p){
+					/* || Math.random() > p*/
+					if(fitness(s) < fitness(best))
+						best.setKeys(s.getKeys());
 					//System.out.println("switch");
+					//System.out.println("apres "+c);
+					//System.out.println(fitness(c));
+					//System.out.println(best);
+					//System.out.println(fitness(best));
 					energieSuivant = energie;
+					//c.echange(c.getKeys()[l][k], c.getKeys()[j][i]);
+					
 					if(i < k){
 						if(j < l){
 							c.echange(c.getKeys()[l][k], c.getKeys()[l-1][k-1]);
@@ -116,8 +132,10 @@ public class Recuit extends Algorithme{
 				}
 			//}
 			//System.out.println("sortie de bouble + baisse de T");
-			temperature = temperature*0.99;
+			temperature = temperature*0.99999;
+			temps++;
 		}
+		System.out.println("best : "+fitness(best));
 	}
 	
 	public double fitness(Clavier c) {
