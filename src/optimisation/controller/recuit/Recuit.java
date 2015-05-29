@@ -10,7 +10,7 @@ import optimisation.model.clavier.ClavierCollection;
 
 public class Recuit extends Algorithme{
 	
-	protected int temperature;
+	protected double temperature;
 
 	public Recuit(ClavierCollection claviers) {
 		super(claviers);
@@ -23,6 +23,7 @@ public class Recuit extends Algorithme{
 		System.out.println("Demarage de l'algorithme recuit");
 		
 		Clavier c = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
+		Clavier s = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
 		
 		Random r = new Random();
 		
@@ -30,11 +31,11 @@ public class Recuit extends Algorithme{
 		char a = '\0';
 		char b = '\0';
 		double distanceMin = 100;
-		double energieMin = 0;
+		double energieSuivant = 0;
 		double energie = 1;
-		double varEnergie = energie - energieMin;
+		double varEnergie = energie - energieSuivant;
 		
-		while(temperature > 0){
+		while(temperature > 10){
 			//r = new Random();
 			try {
 				Thread.sleep(5);
@@ -58,22 +59,29 @@ public class Recuit extends Algorithme{
 			//System.out.println(j);
 			double dist = Math.sqrt(Math.pow(i-k, 2) + Math.pow(j-l, 2));
 			String key = a+""+b;
-			energieMin = 0;
-			energie = dist*Bigramme.getInstance().getValue(key);
-			varEnergie = energieMin - energie; 
-			//System.out.println(key);
-			while(varEnergie != 0 && energie != 0){
-				energie = dist*Bigramme.getInstance().getValue(key);
-				varEnergie = energieMin - energie; 
+			System.out.println(fitness(c));
+			System.out.println("avant "+c);
+			s = c.echange(j, i, l, k);
+			System.out.println("apres "+c);
+			System.out.println(s);
+			energieSuivant = fitness(s);
+			//energie = dist*Bigramme.getInstance().getValue(key);
+			energie = fitness(c);
+			varEnergie = energieSuivant - energie; 
+			System.out.println(key);
+			//while(varEnergie != 0 && energie != 0){
+				//energie = dist*Bigramme.getInstance().getValue(key);
+				energie = fitness(c);
+				varEnergie = energieSuivant - energie; 
 				//System.out.println(temperature);
 				//System.out.println("energie : "+energie);
 				//System.out.println(key);
 				System.out.println("proba "+Math.exp((-varEnergie)/temperature));
-				//System.out.println("varEnergie : "+varEnergie);
+				System.out.println("varEnergie : "+varEnergie);
 				//System.out.println(energie);
 				if(varEnergie < 0 && energie != 0){
-					System.out.println("switch");
-					energieMin = energie;
+					//System.out.println("switch");
+					energieSuivant = energie;
 					if(i < k){
 						if(j < l){
 							c.echange(c.getKeys()[l][k], c.getKeys()[l-1][k-1]);
@@ -106,10 +114,40 @@ public class Recuit extends Algorithme{
 						}
 					}
 				}
-			}
+			//}
 			//System.out.println("sortie de bouble + baisse de T");
-			temperature--;
+			temperature = temperature*0.99;
 		}
+	}
+	
+	public double fitness(Clavier c) {
+		double ret = 0;
+		int valueBigr;
+		double dist = 0;
+		String valueA, valueB, tmp ;
+		Clavier clavier = c;
+		
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<10; j++){
+				if(clavier.getKeys()[i][j].getValue()=='\0')
+					continue;
+				valueA = String.valueOf(clavier.getKeys()[i][j].getValue());
+				for(int k=0; k<4; k++) {
+					for(int l=0; l<10; l++) {
+						if(clavier.getKeys()[k][l].getValue()=='\0')
+							continue;
+						valueB = String.valueOf(clavier.getKeys()[k][l].getValue());
+						tmp = valueA + valueB;
+						valueBigr = Bigramme.getInstance().getValue(tmp);
+						dist = Math.sqrt(Math.pow(i-k, 2) + Math.pow(j-l, 2));
+						ret += dist * valueBigr;
+					}
+				}
+				valueA = "";
+			}
+		}
+		
+		return ret;
 	}
 
 }

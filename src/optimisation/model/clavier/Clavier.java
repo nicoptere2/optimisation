@@ -75,6 +75,16 @@ public class Clavier implements Iterable<Key>{
 	public Key[][] getKeys() {
 		return keys;
 	}
+	
+	public void setKeys(Key[][] k){
+		for(int i =0;i<k.length;i++){
+			for(int j =0;j<k[0].length;j++){
+				this.keys[i][j].setValue(
+						k[i][j].getValue());
+			}
+		}
+			//this.keys[i] = k[i].clone();
+	}
 
 	public synchronized Iterator<Key> iterator() {
 		return keysForIterator.iterator();
@@ -88,4 +98,37 @@ public class Clavier implements Iterable<Key>{
 		k2.setValue(tmp);
 	}
 	
+	public synchronized Clavier echange(int i ,int j ,int k ,int l){
+		char tmp;
+		Clavier c = new Clavier();
+		c.setKeys(this.getKeys());;
+		/*
+		try {
+			c = (Clavier)this.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		tmp = c.getKeys()[i][j].getValue();
+		//tmp = k1.getValue();
+		c.getKeys()[i][j].setValue(c.getKeys()[k][l].getValue());
+		//k1.setValue(k2.getValue());
+		c.getKeys()[k][l].setValue(tmp);
+		//k2.setValue(tmp);
+		return c;
+	}
+	
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("{");
+		for(int i=0; i<4; i++) {
+			for(int j=0; j<10; j++){
+				sb.append(keys[i][j].getValue());
+				sb.append(',');
+			}
+		}
+		sb.append('}');
+		return sb.toString();
+	}
 }
