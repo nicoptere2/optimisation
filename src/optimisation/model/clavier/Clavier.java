@@ -100,7 +100,7 @@ public class Clavier implements Iterable<Key>{
 	
 	public synchronized Clavier echange(int i ,int j ,int k ,int l){
 		char tmp;
-		Clavier c = new Clavier();
+		Clavier c = new Clavier(claviers);
 		c.setKeys(this.getKeys());;
 		/*
 		try {

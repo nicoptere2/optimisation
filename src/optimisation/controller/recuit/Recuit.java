@@ -67,6 +67,7 @@ public class Recuit extends Algorithme{
 			energieSuivant = fitness(s);
 			//energie = dist*Bigramme.getInstance().getValue(key);
 			energie = fitness(c);
+			c.setScore(energie);
 			varEnergie = energieSuivant - energie; 
 			System.out.println(key);
 			//while(varEnergie != 0 && energie != 0){
@@ -116,7 +117,7 @@ public class Recuit extends Algorithme{
 				}
 			//}
 			//System.out.println("sortie de bouble + baisse de T");
-			temperature = temperature*0.99;
+			temperature = temperature*0.9999999;
 		}
 	}
 	
