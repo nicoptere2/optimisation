@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class ClavierCollection implements Iterable<Clavier>{
 	private ArrayList<Clavier> clavierCollection;
+	public Clavier best = null;
 	
 	public ClavierCollection() {
 		clavierCollection = new ArrayList<Clavier>();
@@ -13,7 +14,7 @@ public class ClavierCollection implements Iterable<Clavier>{
 	public void initCollection(int nbClavier) {
 		clavierCollection.removeAll(clavierCollection);
 		for(int i=0; i<nbClavier; i++)
-			clavierCollection.add(new Clavier());
+			clavierCollection.add(new Clavier(this));
 	}
 	
 	public synchronized Iterator<Clavier> iterator() {

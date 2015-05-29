@@ -9,6 +9,7 @@ import optimisation.model.clavier.Clavier;
 public class ViewClavierCollection {
 	
 	private ArrayList<ViewClavier> clavierCollection;
+	private ViewClavier best = null;
 
 	public ViewClavierCollection() {
 		super();
@@ -22,19 +23,28 @@ public class ViewClavierCollection {
 		int j=0;
 		int tmpY;
 		int tmpX;
-		for(Clavier c: Model.getInstance().getClavierCollection()){
+		
+		ArrayList<Clavier> c = Model.getInstance().getClavierCollection().getClavierCollection();
+		for(int n=0; n<c.size() && n<4; n++){
+			
 			tmpY = ViewKey.cote * 5 * i; 
-			tmpX = ViewKey.cote * 11 * j;
-			clavierCollection.add(new ViewClavier(c, tmpX, tmpY));
+			clavierCollection.add(new ViewClavier(c.get(n), 0, tmpY));
 			i++;
 			if(i%4 == 0)
 				j++;
 		}
+		
+		if(Model.getInstance().getClavierCollection().best != null)
+			best = new ViewClavier(Model.getInstance().getClavierCollection().best, ViewKey.cote * 11, 0);
 	}
 	
-	public boolean dessiner(Graphics2D gp) {
-		for(ViewClavier vc : clavierCollection) 
+	public synchronized boolean dessiner(Graphics2D gp) {		
+		for(ViewClavier vc : clavierCollection) {
 			vc.dessiner(gp);
+		}
+		
+		if(best != null)
+			best.dessiner(gp);
 
 		return true;
 			

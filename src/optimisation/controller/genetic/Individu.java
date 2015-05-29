@@ -9,9 +9,15 @@ import optimisation.model.clavier.Key;
 public class Individu implements Comparable{
 	
 	private Clavier clavier;
+	
+	private double fitness;
 
 	public Individu(Clavier c) {
 		this.clavier = c;
+	}
+	
+	public double getFitness() {
+		return this.fitness;
 	}
 	
 	public double fitness() {
@@ -39,7 +45,8 @@ public class Individu implements Comparable{
 				valueA = "";
 			}
 		}
-		
+		this.clavier.setScore(ret);
+		this.fitness = ret;
 		return ret;
 	}
 	
@@ -130,7 +137,11 @@ public class Individu implements Comparable{
 	}
 	
 	public String toString() {
-		return String.valueOf(this.fitness());
+		return String.valueOf(this.getFitness());
+	}
+
+	public void good() {
+		this.clavier.best();
 	}
 
 }

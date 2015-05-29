@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import optimisation.controller.Algorithme;
+import optimisation.model.Model;
 import optimisation.model.clavier.Clavier;
 import optimisation.model.clavier.ClavierCollection;
 
@@ -26,7 +27,7 @@ public class Genetic extends Algorithme{
 		for(Clavier c: this.claviers) 
 			individus.add(new Individu(c));
 		
-		System.out.println("individus\n"+individus);
+		//System.out.println("individus\n"+individus);
 	}
 
 	@Override
@@ -36,9 +37,12 @@ public class Genetic extends Algorithme{
 		int j=0; int n;
 		while(j<100000) {
 			
+			this.sort();
+			
+			this.individus.get(0).good();
+		
 			System.out.println(this);
 			
-			this.sort();
 			int garde = (int) (individus.size()*pourcentGarde);
 			n=0;
 			for(int i=garde; i<individus.size()-1; i+=2){
@@ -53,6 +57,10 @@ public class Genetic extends Algorithme{
 			}
 			
 			j++;
+			
+	
+		
+		
 		}
 	}
 	

@@ -11,7 +11,14 @@ public class Clavier implements Iterable<Key>{
 	
 	private final int SIZE = 40;
 	
-	public Clavier () {
+	private boolean isShown = true;
+	
+	private ClavierCollection claviers;
+	
+	private double score;
+	
+	public Clavier (ClavierCollection cC) {
+		this.claviers = cC;
 		keys = new Key[4][10];
 		keysForIterator = new ArrayList<Key>(SIZE);
 		char[] clavier = new char[SIZE];
@@ -33,9 +40,9 @@ public class Clavier implements Iterable<Key>{
 		Random r = new Random();
 		int i;
 		for(char c='A'; c<='Z'; c++){
-			System.out.println(c);
+			//System.out.println(c);
 			do{
-				System.out.println("coucou");
+				//System.out.println("coucou");
 				i = r.nextInt(40);
 			}while(clavier[i] != '\0');
 			
@@ -52,7 +59,19 @@ public class Clavier implements Iterable<Key>{
 			}
 		}
 	}
-	
+
+	public synchronized void best() {
+		this.claviers.best = this;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
 	public Key[][] getKeys() {
 		return keys;
 	}
