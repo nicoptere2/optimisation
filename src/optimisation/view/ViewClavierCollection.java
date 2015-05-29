@@ -33,19 +33,22 @@ public class ViewClavierCollection {
 			if(i%4 == 0)
 				j++;
 		}
-		
+		/*
 		if(Model.getInstance().getClavierCollection().best != null)
 			best = new ViewClavier(Model.getInstance().getClavierCollection().best, ViewKey.cote * 11, 0);
+			*/
 	}
 	
 	public synchronized boolean dessiner(Graphics2D gp) {		
 		for(ViewClavier vc : clavierCollection) {
 			vc.dessiner(gp);
 		}
-		
+		if(!clavierCollection.isEmpty())
+			clavierCollection.get(0).dessiner(gp,true);
+		/*
 		if(best != null)
 			best.dessiner(gp);
-
+*/
 		return true;
 			
 	}

@@ -142,5 +142,9 @@ public class Individu implements Comparable{
 	public void good() {
 		this.clavier.best();
 	}
+	
+	public Clavier getClavier(){
+		return clavier;
+	}
 
 }
