@@ -113,7 +113,6 @@ public class Individu implements Comparable{
 	}
 	
 	public void mutation() {
-		
 		Random r = new Random();
 		if((double)(r.nextInt(100))/100 < Genetic.propMutation) {
 			clavier.echange(clavier.getKeys()[r.nextInt(4)][r.nextInt(10)], clavier.getKeys()[r.nextInt(4)][r.nextInt(10)]);

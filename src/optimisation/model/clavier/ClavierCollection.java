@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class ClavierCollection implements Iterable<Clavier>{
 	private ArrayList<Clavier> clavierCollection;
-	public Clavier best = null;
+	public volatile Clavier best = null;
 	
 	public ClavierCollection() {
 		clavierCollection = new ArrayList<Clavier>();
@@ -33,5 +33,8 @@ public class ClavierCollection implements Iterable<Clavier>{
 		this.clavierCollection = clavierCollection;
 	}
 	
+	public void setBest(Clavier c) {
+		this.best = c.clone();
+	}
 	
 }

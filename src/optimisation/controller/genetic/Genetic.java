@@ -15,7 +15,7 @@ public class Genetic extends Algorithme{
 	
 	public static double pourcentGarde = 0.5;
 	
-	public static double propMutation = 0.03;
+	public static double propMutation = 0.20;
 	
 	public Genetic(ClavierCollection claviers, int nbIndividu) {
 		super(claviers);
@@ -26,15 +26,13 @@ public class Genetic extends Algorithme{
 		
 		for(Clavier c: this.claviers) 
 			individus.add(new Individu(c));
-		
-		//System.out.println("individus\n"+individus);
 	}
 
 	@Override
 	public void run() {
 		System.out.println("Démarage de l'algorithme génétique");
 		
-		int j=0; int n;
+		int j=0;
 		while(j<100000) {
 			
 			this.sort();
@@ -44,10 +42,8 @@ public class Genetic extends Algorithme{
 			//System.out.println(this);
 			
 			int garde = (int) (individus.size()*pourcentGarde);
-			n=0;
+
 			for(int i=garde; i<individus.size()-1; i+=2){
-				n++;
-				//System.out.println("les deux individus sont : " + i + " et " + (i+1));
 				individus.set(i+1, individus.get(i).croisement(individus.get(i+1)));
 			}
 			

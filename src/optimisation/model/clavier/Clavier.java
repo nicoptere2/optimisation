@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-public class Clavier implements Iterable<Key>{
+public class Clavier implements Iterable<Key>, Cloneable{
 	
-	private Key[][] keys;
-	private ArrayList<Key> keysForIterator;
+	private volatile Key[][] keys;
+	private volatile ArrayList<Key> keysForIterator;
 	
 	private final int SIZE = 40;
 	
@@ -16,6 +16,20 @@ public class Clavier implements Iterable<Key>{
 	private ClavierCollection claviers;
 	
 	private double score;
+	
+	private Clavier(Key[][] keys, boolean isShown, ClavierCollection cC, double score) {
+		this.keys = keys.clone();
+		this.isShown = isShown;
+		this.claviers = cC;
+		this.score = score;
+		
+		keysForIterator = new ArrayList<Key>();
+		
+		for(int i=0; i<4; i++){
+			for(int j=0; j<10; j++)
+				this.keysForIterator.add(keys[i][j]);
+		}
+	}
 	
 	public Clavier (ClavierCollection cC) {
 		this.claviers = cC;
@@ -61,7 +75,7 @@ public class Clavier implements Iterable<Key>{
 	}
 
 	public synchronized void best() {
-		this.claviers.best = this;
+		this.claviers.setBest(this);
 	}
 
 	public double getScore() {
@@ -130,5 +144,9 @@ public class Clavier implements Iterable<Key>{
 		}
 		sb.append('}');
 		return sb.toString();
+	}
+	
+	public Clavier clone() {
+		return new Clavier(keys, isShown, this.claviers, score);
 	}
 }

@@ -2,7 +2,7 @@ package optimisation.model.clavier;
 
 public class Key {
 	
-	private char value;
+	private volatile char value;
 	private int position;
 	
 	public Key() {
@@ -23,6 +23,5 @@ public class Key {
 	public void setPosition(int i) {
 		// TODO Auto-generated method stub
 	}
-
 
 }

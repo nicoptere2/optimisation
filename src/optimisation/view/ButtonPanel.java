@@ -37,7 +37,7 @@ public class ButtonPanel extends JPanel{
         
         final JPanel pnlMut = new JPanel();
         JLabel labMut = new JLabel("Mutation : ");
-        final Spinner spinMut = new Spinner(0, 100, 10, 1, "Mutation");
+        final Spinner spinMut = new Spinner(0, 100, 20, 1, "Mutation");
 		
 		
 		String[] algos = {"", "Recuit", "Genetic"};

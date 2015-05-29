@@ -45,6 +45,6 @@ public class Controller {
 	}
 
 	public void setMutation(int mut) {
-		Genetic.propMutation = mut /100;
+		Genetic.propMutation = ((double)mut) /100;
 	}
 }
