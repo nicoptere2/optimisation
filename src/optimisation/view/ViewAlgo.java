@@ -21,6 +21,8 @@ public class ViewAlgo extends JPanel{
 	
 	protected JTextField iteration;
 	
+	public static int refresh = 5;
+	
 	public ViewAlgo() {
 		this.claviers = new ViewClavierCollection();
 		
@@ -47,7 +49,7 @@ public class ViewAlgo extends JPanel{
         
                 
         try {
-            Thread.sleep(0) ;
+            Thread.sleep(refresh) ;
         } catch (InterruptedException ex) {
             Logger.getLogger(ViewAlgo.class.getName()).log(Level.SEVERE, null, ex);
         }

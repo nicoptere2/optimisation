@@ -22,7 +22,7 @@ public class Genetic extends Algorithme{
 		
 		individus = new ArrayList<Individu>();
 		
-		this.claviers.initCollection(nbIndividu);
+		this.claviers.initCollection(nbIndividu+1);
 		
 		for(Clavier c: this.claviers) 
 			individus.add(new Individu(c));
@@ -42,6 +42,10 @@ public class Genetic extends Algorithme{
 			this.individus.get(0).good();
 		
 			//System.out.println(this);
+			
+			Clavier best = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
+			best.setKeys(individus.get(0).getClavier().getKeys());
+			best.setScore(individus.get(0).getFitness());
 			
 			int garde = (int) (individus.size()*pourcentGarde);
 			n=0;

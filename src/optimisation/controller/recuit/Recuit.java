@@ -22,9 +22,9 @@ public class Recuit extends Algorithme{
 	public void run() {
 		System.out.println("Demarage de l'algorithme recuit");
 		
-		Clavier c = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
-		Clavier s = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
-		Clavier best = Model.getInstance().getClavierCollection().getClavierCollection().get(1);
+		Clavier c = Model.getInstance().getClavierCollection().getClavierCollection().get(1);
+		Clavier s = Model.getInstance().getClavierCollection().getClavierCollection().get(1);
+		Clavier best = Model.getInstance().getClavierCollection().getClavierCollection().get(0);
 		
 		Random r = new Random();
 		
@@ -85,12 +85,14 @@ public class Recuit extends Algorithme{
 				double p = Math.exp((-varEnergie)/temperature);
 				//System.out.println("proba "+p);
 				//System.out.println(energie);
-				System.out.println("varEnergie : "+varEnergie);
+				//System.out.println("varEnergie : "+varEnergie);
 				//System.out.println(energie);
 				if((varEnergie < 0 && energie != 0) || Math.random() > p){
 					/* || Math.random() > p*/
-					if(fitness(s) < fitness(best))
+					if(fitness(s) < fitness(best)){
 						best.setKeys(s.getKeys());
+						best.setScore(fitness(best));
+					}
 					//System.out.println("switch");
 					//System.out.println("apres "+c);
 					//System.out.println(fitness(c));
@@ -135,7 +137,7 @@ public class Recuit extends Algorithme{
 			//System.out.println("sortie de bouble + baisse de T");
 			temperature = temperature*0.99999;
 			temps++;
-
+			Model.getInstance().setIteration(temps);
 		}
 		System.out.println("best : "+fitness(best));
 	}

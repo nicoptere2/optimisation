@@ -42,6 +42,8 @@ public class ViewClavierCollection {
 		for(ViewClavier vc : clavierCollection) {
 			vc.dessiner(gp);
 		}
+		if(!clavierCollection.isEmpty())
+			clavierCollection.get(0).dessiner(gp,true);
 		
 		if(best != null)
 			best.dessiner(gp);

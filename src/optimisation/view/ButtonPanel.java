@@ -22,7 +22,7 @@ public class ButtonPanel extends JPanel{
 	
 	public ButtonPanel(ViewAlgo vC) {
 		
-		GridLayout grid = new GridLayout(5, 1);
+		GridLayout grid = new GridLayout(6, 1);
 		this.setLayout(grid);
 		
 		this.vClavier = vC;
@@ -38,6 +38,10 @@ public class ButtonPanel extends JPanel{
         final JPanel pnlMut = new JPanel();
         JLabel labMut = new JLabel("Mutation : ");
         final Spinner spinMut = new Spinner(0, 100, 10, 1, "Mutation");
+        
+        final JPanel pnlRef = new JPanel();
+        JLabel labRef = new JLabel("Taux de raifraichissement : ");
+        final Spinner spinRef = new Spinner(0,1000,100,1,"rafraichissement");
 		
 		
 		String[] algos = {"", "Recuit", "Genetic"};
@@ -65,7 +69,7 @@ public class ButtonPanel extends JPanel{
         
         pnlTemp.add(labTemp);
         spinTemp.addChangeListener(new ChangeListener() {
-			@Override
+			
 			public void stateChanged(ChangeEvent arg0) {
 				Spinner spin = (Spinner) arg0.getSource(); 
 				int temp = spin.getNumber();
@@ -78,7 +82,7 @@ public class ButtonPanel extends JPanel{
 		
 		pnlPop.add(labPop);
         spinPop.addChangeListener(new ChangeListener() {
-			@Override
+			
 			public void stateChanged(ChangeEvent arg0) {
 				Spinner spin = (Spinner) arg0.getSource(); 
 				int temp = spin.getNumber();
@@ -90,7 +94,7 @@ public class ButtonPanel extends JPanel{
 		
 		pnlMut.add(labMut);
         spinMut.addChangeListener(new ChangeListener() {
-			@Override
+			
 			public void stateChanged(ChangeEvent arg0) {
 				Spinner spin = (Spinner) arg0.getSource(); 
 				int mut = spin.getNumber();
@@ -111,6 +115,16 @@ public class ButtonPanel extends JPanel{
 			}});
         this.add("test2", btnExec);
         
+        pnlRef.add(labRef);
+		spinRef.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0){
+				Spinner spin = (Spinner) arg0.getSource();
+				int temp = spin.getNumber();
+				ViewAlgo.refresh = temp;
+			}
+		});
+		pnlRef.add(spinRef);
+		this.add(pnlRef);
         
 	}
 }
