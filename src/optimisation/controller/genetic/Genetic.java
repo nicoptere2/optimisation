@@ -41,7 +41,7 @@ public class Genetic extends Algorithme{
 			
 			this.individus.get(0).good();
 		
-			System.out.println(this);
+			//System.out.println(this);
 			
 			int garde = (int) (individus.size()*pourcentGarde);
 			n=0;
@@ -50,17 +50,12 @@ public class Genetic extends Algorithme{
 				//System.out.println("les deux individus sont : " + i + " et " + (i+1));
 				individus.set(i+1, individus.get(i).croisement(individus.get(i+1)));
 			}
-			//System.out.println("nb :"+n);
 			
-			for(int i=10; i<individus.size()-1; i++){
+			for(int i=1; i<individus.size()-1; i++){
 				individus.get(i).mutation();
 			}
 			
-			j++;
-			
-	
-		
-		
+			Model.getInstance().setIteration(j++);
 		}
 	}
 	

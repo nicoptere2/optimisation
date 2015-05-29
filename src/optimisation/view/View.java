@@ -20,29 +20,7 @@ public class View extends JPanel{
 		this.add(vClavier, BorderLayout.WEST);
 		
 		
-		JPanel panelBtn = new JPanel();
-		
-		String[] algos = {"", "Recuit", "Genetic"};
-        ComboBox choixAlgo = new ComboBox(algos);
-        choixAlgo.addActionListener(new ActionListener() {
-        	 public void actionPerformed(ActionEvent event) {
-        		 ComboBox choixAlgo = (ComboBox) event.getSource();
-        		 Controller.getInstance().setAlgorithme((String) choixAlgo.getSelectedItem());
-        	 }
-        });
-        panelBtn.add(choixAlgo);
-		
-		
-		Bouton btnExec = new Bouton("Executer", "Execute l'algorithme de recherche de chemin");
-        btnExec.addActionListener(new  ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				Controller.getInstance().execute();
-				vClavier.execute();
-			}});
-        panelBtn.add(btnExec);
-
-        
+		ButtonPanel panelBtn = new ButtonPanel(vClavier);
         this.add(panelBtn, BorderLayout.EAST);
 	}
 }

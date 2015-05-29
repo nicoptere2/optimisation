@@ -12,6 +12,8 @@ public class Controller {
 	
 	private Thread thread;
 	
+	private int nbPop = 100;
+	
 	protected Controller() {
 	}
 	
@@ -26,12 +28,23 @@ public class Controller {
 		if(algo == "Recuit")
 			algorithme = new Recuit(Model.getInstance().getClavierCollection());
 		else if(algo == "Genetic")
-			algorithme = new Genetic(Model.getInstance().getClavierCollection(), 100);
+			algorithme = new Genetic(Model.getInstance().getClavierCollection(), nbPop);
 		
 		thread = new Thread(algorithme, "Controlle");
 	}
 
 	public void execute() {
 		thread.start();
+	}
+
+	public void setTemperature(int temp) {
+	}
+
+	public void setPopulation(int nbPop) {
+		this.nbPop = nbPop;
+	}
+
+	public void setMutation(int mut) {
+		Genetic.propMutation = mut /100;
 	}
 }

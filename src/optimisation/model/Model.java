@@ -1,8 +1,5 @@
 package optimisation.model;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 import optimisation.model.clavier.ClavierCollection;
 
 public class Model {
@@ -11,7 +8,7 @@ public class Model {
 	
 	private ClavierCollection cC;
 	
-	public Lock lock;
+	private int nbIteration = 0;
 	
 	public static Model getInstance() {
 		if(instance == null)
@@ -22,12 +19,21 @@ public class Model {
 	
 	public Model() {
 		cC = new ClavierCollection();
-		lock = new ReentrantLock();
 		instance = this;
 	}
 	
 	public ClavierCollection getClavierCollection() {
 		//System.out.println("taille : "+cC.size());
 		return cC;
+	}
+	
+	
+
+	public int getIteration() {
+		return this.nbIteration;
+	}
+
+	public void setIteration(int nb) {
+		this.nbIteration = nb;
 	}
 }
