@@ -26,7 +26,7 @@ public class ViewAlgo extends JPanel{
 	public ViewAlgo() {
 		this.claviers = new ViewClavierCollection();
 		
-		this.setPreferredSize(new Dimension(550, 500)) ;
+		this.setPreferredSize(new Dimension(300, 550)) ;
 	}
 	
 	public void execute() {
@@ -70,6 +70,6 @@ public class ViewAlgo extends JPanel{
         int yC = (fm.getAscent() + ((fm.getAscent() + fm.getDescent())) / 2);
         g.setColor(Color.black);
         // Center text horizontally and vertically within provided rectangular bounds
-        g.drawString(s, xC + 250, yC + 450);
+        g.drawString(s, xC , yC + 500);
 	}
 }
